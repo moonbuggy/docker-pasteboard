@@ -1,0 +1,23 @@
+#! /usr/bin/execlineb -P
+with-contenv
+
+execline-cd /pasteboard
+
+importas -D "1000" PUID PUID
+importas -D "1000" PGID PGID
+
+s6-setuidgid "${PUID}:${PGID}"
+
+importas -D "production" NODE_ENV NODE_ENV
+importas -D "3000" NODE_PORT NODE_PORT
+importas -D "pasteboard.co" ORIGIN PB_ORIGIN
+importas -D "7" MAX PB_MAX
+
+export READY_FD 5
+export TRUST_PROXY "loopback, linklocal"
+export LOCAL true
+export NODE_ENV "${MODE_ENV}"
+export PORT "${NODE_PORT}"
+export ORIGIN "${ORIGIN}"
+export MAX "${MAX}"
+coffee app.coffee
