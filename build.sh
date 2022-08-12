@@ -10,10 +10,10 @@
 DOCKER_REPO="${DOCKER_REPO:-moonbuggy2000/pasteboard}"
 
 # default tag to build when no arguments provided
-default_tag='latest'
+default_tag='latest nginx'
 
 # optional: tag(s) to build when 'all' is the argument
-all_tags='latest'
+all_tags='latest nginx'
 
 # start the builder proper
 . "hooks/.build.sh"
